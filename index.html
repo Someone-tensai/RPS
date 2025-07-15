@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        
+        function getComputerChoice()
+        {
+            // Get a random number from one to three
+            choice = Math.floor(Math.random() * 3) + 1
+            // console.log(choice);
+            // Choose the string based on the number
+            if(choice == 1)
+            {
+                return "rock"
+            }
+
+            if(choice == 2)
+            {
+                return "paper"
+            }
+
+            if(choice == 3)
+            {
+                return "scissors"
+            }
+        }
+
+        function getHumanChoice()
+        {
+            // Take Input From the User
+            user_choice = prompt("Choose rock, paper, or scissors: ")
+            // Return it
+            return user_choice
+        }
+
+        function playGame()
+        {
+            humanScore = 0;
+            computerScore = 0;
+            function playRound(humanChoice, computerChoice)
+            {   
+                // Make the input Case insensitive
+                // Changing everything to uppercase
+                humanChoice =  humanChoice.toUpperCase();
+                computerChoice = computerChoice.toUpperCase();
+                
+                // Check condition for draw 
+                if(humanChoice === computerChoice)
+                {
+                    console.log(`It's a draw. ${humanChoice} vs ${computerChoice}.    Human Score: ${humanScore} , Computer Score: ${computerScore}`)
+                    
+                }
+                // Check various conditions of winning for user
+                else if((humanChoice === "ROCK" && computerChoice === "SCISSORS") || (humanChoice === "SCISSORS" && computerChoice === "PAPER") || (humanChoice === "PAPER" && computerChoice == "ROCK"))
+                {
+                    humanScore++;
+                    console.log(`You win this round! ${humanChoice} beats ${computerChoice}.   Human Score: ${humanScore} , Computer Score: ${computerScore}`);
+                  
+                }
+                // Else User Loses
+                else 
+                {
+                    computerScore++;
+                    console.log(`You lose this round! ${computerChoice} beats ${humanChoice}.   Human Score: ${humanScore} , Computer Score: ${computerScore}`);
+                }
+            }
+            for(i = 0; i < 5 ; i++)
+            {
+                playRound(getHumanChoice(),getComputerChoice());
+            }
+            if(humanScore === computerScore)
+            {
+                console.log(`Its a draw. With a score of ${computerScore}.`);
+            }
+            else if(humanScore > computerScore)
+            {
+                console.log(`You Win! with a score of ${humanScore} against ${computerScore}.`);
+            }
+            else
+            {
+                console.log(`You Lose! with a score of ${humanScore} against ${computerScore}.`);
+            }
+        }
+        
+        playGame();
+     
+    </script>
+</body>
+</html>
